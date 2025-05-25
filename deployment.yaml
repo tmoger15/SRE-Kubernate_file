@@ -1,9 +1,9 @@
-apiVersion: apps/v1 
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: flower-app-deployment
-spec: #define the deployement behaviout
-  replicas : 3
+  name: teja-app-deployment
+spec: # Defines the Deployment Behaviour
+  replicas: 3
   selector:
     matchLabels:
       app: web
@@ -11,9 +11,9 @@ spec: #define the deployement behaviout
     metadata:
       labels:
         app: web
-    spec: #defines the pod deployement
+    spec: # Define the Pod behaviour
       containers:
-      - name: cart-app
+      - name: lily-app
         image: muralisocial123/flower-app:1.0
         resources:
           limits:
@@ -21,6 +21,6 @@ spec: #define the deployement behaviout
             cpu: "100m"
           requests:
             memory: "128Mi"
-            cpu: "50m"
+            cpu: "50m"  
         ports:
         - containerPort: 3015
