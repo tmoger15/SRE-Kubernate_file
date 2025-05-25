@@ -6,11 +6,11 @@ spec: # Defines the Deployment Behaviour
   replicas: 3
   selector:
     matchLabels:
-      app: web
+      app: list
   template:
     metadata:
       labels:
-        app: web
+        app: teju
     spec: # Define the Pod behaviour
       containers:
       - name: lily-app
@@ -24,3 +24,16 @@ spec: # Defines the Deployment Behaviour
             cpu: "50m"  
         ports:
         - containerPort: 3015
+---
+# writing service.yml to expose the application
+apiVersion: v1
+kind: Service
+metadata:
+  name: Teju-flower.svc
+spec: 
+  selector:
+    app: Teju
+  ports:
+  - port: 3016
+    targetPort: 3015
+  type: LoadBalancer
