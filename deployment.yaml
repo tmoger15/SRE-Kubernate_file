@@ -1,19 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: teja-app-deployment
+  name: teja-flower-app-deployment
+  labels:
+    app: example
 spec: # Defines the Deployment Behaviour
   replicas: 3
   selector:
     matchLabels:
-      app: list
+      app: teja
   template:
     metadata:
       labels:
-        app: teju
+        app: teja
     spec: # Define the Pod behaviour
       containers:
-      - name: lily-app
+      - name: list-app
         image: muralisocial123/flower-app:1.0
         resources:
           limits:
@@ -25,15 +27,15 @@ spec: # Defines the Deployment Behaviour
         ports:
         - containerPort: 3015
 ---
-# writing service.yml to expose the application
+# Writing Service.yml to expose the application
 apiVersion: v1
 kind: Service
 metadata:
-  name: Teju-flower.svc
-spec: 
+  name: teju-flower-app-svc
+spec:
   selector:
-    app: Teju
+    app: teju
   ports:
-  - port: 3016
-    targetPort: 3015
+  - port: 3016 # Service Port
+    targetPort: 3015 # Container Port
   type: LoadBalancer
